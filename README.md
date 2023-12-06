@@ -24,9 +24,9 @@ this app is useful to visualize swagger.json via restapi and docker.
 1. `pip install pandas`
 1. `Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force`  ※ for any users to execute this ps script. 
 1. `./CheckMoeSchema.ps1`
-  1. "Enter the REST endpoint:" is moe scoring REST ENDPOINT `https://<YOUR ENDPOINT>.<REAGION.inference.ml.azure.com/score`
-  1. "Enter the Deployment NAME:" is your moe deployment name
-  1. "Enter the API key:" is your moe api key
+    1. "Enter the REST endpoint:" is moe scoring REST ENDPOINT `https://<YOUR ENDPOINT>.<REAGION.inference.ml.azure.com/score`
+    1. "Enter the Deployment NAME:" is your moe deployment name
+    1. "Enter the API key:" is your moe api key
 
 ###### example
 <img src='./description.png'></img>
