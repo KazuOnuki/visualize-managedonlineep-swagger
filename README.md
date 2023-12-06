@@ -1,4 +1,6 @@
-﻿
+﻿# Point
+this app is useful to visualize swagger.json via restapi and docker.
+
 ### folder configuration
 - `swagger`: 
   - there's auto-created file `swagger_spec.json` in `swagger` folder every time you execute `CheckMoeSchema.ps1` 
