@@ -18,7 +18,7 @@ this app is useful to visualize swagger.json via restapi and docker.
 - you can run `docker` command at the same as above.
 
 ### execution step
-1. execute git clone at specified folder
+1. execute `git clone` at specified folder
 1. `python -m venv .venv`
 1. `.\.venv\Scripts\activate`
 1. `pip install pandas`
