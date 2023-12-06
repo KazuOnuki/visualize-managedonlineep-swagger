@@ -38,26 +38,6 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
               if example:=swagger_data['definitions']['ServiceInput']['example']:
                 with open(EXAMPLE_JSON_PATH, 'w') as json_file:
                   json.dump(example, json_file, indent=2)
-        
-        # ### Check whether ServiceInputs/example exists
-        # # JSONファイルを読み込む
-        # with open(SWAGGER_JSON_PATH, 'r') as file:
-        #     swagger_data = json.load(file)
-
-        #     # ServiceInputの例データが空なら
-        #     if not swagger_data['definitions']['ServiceInput']['example']:
-        #       df = pd.read_csv('./testdata/iris.csv', index_col=None)
-        #       example = json.loads(df[df.index==0].to_json(orient='split'))
-        #       # 最終的なデータ形式
-        #       final_data = {"input_data": example}
-        #       swagger_data['definitions']['ServiceInput']['example'] = final_data
-
-        #       # 更新したSwagger JSONを保存
-        #       with open(SWAGGER_JSON_PATH, 'w') as json_file:
-        #           json.dump(swagger_data, json_file, indent=2)
-
-        #       print("added ServiceInput example")
-
 
         print(f'The JSON data has been saved to {SWAGGER_JSON_PATH}')
 

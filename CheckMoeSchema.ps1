@@ -3,7 +3,6 @@
 .\.venv\Scripts\activate
 
 # ユーザーに対話的に情報を入力させる
-# プロンプトメッセージを色付きで表示
 Write-Host -NoNewline -ForegroundColor Yellow "Enter the REST endpoint: "
 $rest_endpoint = Read-Host
 Write-Host -NoNewline -ForegroundColor Yellow "Enter the Deployment Name: "
