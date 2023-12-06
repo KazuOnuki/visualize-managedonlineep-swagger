@@ -24,3 +24,6 @@ this app is useful to visualize swagger.json via restapi and docker.
 1. `pip install pandas`
 1. `cd visualise-moe-swagger`
 1. `./start-docker.ps1`
+
+###### example
+<img src='./description.png'></img>
