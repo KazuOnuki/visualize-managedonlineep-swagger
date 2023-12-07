@@ -1,7 +1,5 @@
 ﻿# start-docker.ps1
 
-.\.venv\Scripts\activate
-
 # ユーザーに対話的に情報を入力させる
 Write-Host -NoNewline -ForegroundColor Yellow "Enter the REST endpoint: "
 $rest_endpoint = Read-Host
@@ -11,8 +9,18 @@ Write-Host -NoNewline -ForegroundColor Yellow "Enter the API key: "
 $api_key = Read-Host 
 $example_path = "./testdata/example.json"
 
+# Dockerイメージ名
+$dockerImageName = "python-env:latest"
+# Dockerイメージが存在するかどうかを確認
+$existingImage = docker images -q $dockerImageName
+
+if (-not ($existingImage)) {
+  docker image build . -t python-env
+  Write-Host "docker image build succeeded."
+}
+
 # 実行
-python download-swagger.py --rest_endpoint $rest_endpoint --deployment $deployment --api_key $api_key
+docker run -v ${pwd}:/app -w /app python-env:latest bash -c "python download-swagger.py --rest_endpoint $rest_endpoint --deployment $deployment --api_key $api_key"
 
 if (-not (Test-Path $example_path)) {
   echo "================"
