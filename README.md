@@ -14,7 +14,6 @@ this app is useful to visualize swagger.json via restapi and docker.
   - it's to download swagger.json via rest api and start up swagger ui app. 
 
 ### requirements
-- you can run `python` command at local-machine terminal
 - you can run `docker` command at the same as above.
 
 ### execution step
