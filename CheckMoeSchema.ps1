@@ -1,7 +1,5 @@
 ﻿# start-docker.ps1
 
-.\.venv\Scripts\activate
-
 # ユーザーに対話的に情報を入力させる
 Write-Host -NoNewline -ForegroundColor Yellow "Enter the REST endpoint: "
 $rest_endpoint = Read-Host
@@ -12,7 +10,8 @@ $api_key = Read-Host
 $example_path = "./testdata/example.json"
 
 # 実行
-python download-swagger.py --rest_endpoint $rest_endpoint --deployment $deployment --api_key $api_key
+docker run -v ${pwd}:/app -w /app python:3.8-slim bash -c "pip install pandas && python download-swagger.py --rest_endpoint $rest_endpoint --deployment $deployment --api_key $api_key"
+# python download-swagger.py --rest_endpoint $rest_endpoint --deployment $deployment --api_key $api_key
 
 if (-not (Test-Path $example_path)) {
   echo "================"
