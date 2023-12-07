@@ -1,0 +1,21 @@
+{
+  "Inputs": {
+    "data": [
+      {
+        "Category": "example_value",
+        "Product": "example_value",
+        "Company": "example_value",
+        "Date": "2000-01-01T00:00:00.000Z",
+        "test_feat1": 0.0,
+        "test_feat2": 0.0,
+        "test_feat3": 0.0
+      }
+    ]
+  },
+  "GlobalParameters": {
+    "quantiles": [
+      0.025,
+      0.975
+    ]
+  }
+}
