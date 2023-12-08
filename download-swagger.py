@@ -10,6 +10,7 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
     TEST_DIR_PATH = './testdata'
     SWAGGER_JSON_PATH = f'{SWAGGER_DIR_PATH}/swagger_spec.json'
     EXAMPLE_JSON_PATH = f'{TEST_DIR_PATH}/example.json'
+    EXAMPLE_JSON_EXIST = True
     # Set headers with Authorization token
     headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + api_key, 'azureml-model-deployment': deployment}
     # /score の部分を正規表現を使用してすべて削除
@@ -44,9 +45,11 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
                     for key, value in data.items():
                         if not value:
                             # if value is empty, break out block.
+                            EXAMPLE_JSON_EXIST = False
                             break
-                    with open(EXAMPLE_JSON_PATH, 'w') as json_file:
-                        json.dump(example, json_file, indent=2)
+                    if EXAMPLE_JSON_EXIST:
+                        with open(EXAMPLE_JSON_PATH, 'w') as json_file:
+                            json.dump(example, json_file, indent=2)
                 else:
                     pass
 
