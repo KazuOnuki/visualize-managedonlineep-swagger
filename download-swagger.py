@@ -40,7 +40,6 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
                 first_key = list(example.keys())[0]
                 # NOTE: if example json exists..
                 if data:=example[first_key]:
-                    print(example)
                     # 各キーおよび値が空であるかどうかを確認
                     for key, value in data.items():
                         if not value:
