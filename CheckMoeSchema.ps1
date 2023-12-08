@@ -24,7 +24,7 @@ docker run -v ${pwd}:/app -w /app python-env:latest bash -c "python download-swa
 
 if (-not (Test-Path $example_path)) {
   echo "================"
-  Write-Host -NoNewline -ForegroundColor Yellow "Enter the testdata(.csv) path ※relative path or Absolute path: "
+  Write-Host -NoNewline -ForegroundColor Yellow "Enter the testdata(.csv) path ※eg.) ./testdata/hoge.csv: "
   $testdata = Read-Host
   echo "================"
   python get-example.py --testdata $testdata

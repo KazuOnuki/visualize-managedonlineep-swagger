@@ -11,20 +11,19 @@ def download_swagger_json(testdata):
   # JSONファイルを読み込む
   with open(SWAGGER_JSON_PATH, 'r') as file:
       swagger_data = json.load(file)
+      example = swagger_data['definitions']['ServiceInput']['example']
+      first_key = list(example.keys())[0]
+      df = pd.read_csv(testdata, index_col=None)
+      example_data = json.loads(df[df.index==0].to_json(orient='split'))
+      # 最終的なデータ形式
+      final_data = {f"{first_key}": example_data}
+      swagger_data['definitions']['ServiceInput']['example'] = final_data
 
-      # ServiceInputの例データが空なら
-      if not swagger_data['definitions']['ServiceInput']['example']:
-        df = pd.read_csv(testdata, index_col=None)
-        example = json.loads(df[df.index==0].to_json(orient='split'))
-        # 最終的なデータ形式
-        final_data = {"input_data": example}
-        swagger_data['definitions']['ServiceInput']['example'] = final_data
+      # 更新したSwagger JSONを保存
+      with open(SWAGGER_JSON_PATH, 'w') as json_file:
+          json.dump(swagger_data, json_file, indent=2)
 
-        # 更新したSwagger JSONを保存
-        with open(SWAGGER_JSON_PATH, 'w') as json_file:
-            json.dump(swagger_data, json_file, indent=2)
-
-        print("added ServiceInput example")
+      print("added ServiceInput example")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Get Example Json from testdata csv')

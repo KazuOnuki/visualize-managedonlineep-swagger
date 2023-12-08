@@ -36,8 +36,19 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
         with open(SWAGGER_JSON_PATH, 'r') as file:
               swagger_data = json.load(file)
               if example:=swagger_data['definitions']['ServiceInput']['example']:
-                with open(EXAMPLE_JSON_PATH, 'w') as json_file:
-                  json.dump(example, json_file, indent=2)
+                first_key = list(example.keys())[0]
+                # NOTE: if example json exists..
+                if data:=example[first_key]:
+                    print(example)
+                    # 各キーおよび値が空であるかどうかを確認
+                    for key, value in data.items():
+                        if not value:
+                            # if value is empty, break out block.
+                            break
+                    with open(EXAMPLE_JSON_PATH, 'w') as json_file:
+                        json.dump(example, json_file, indent=2)
+                else:
+                    pass
 
         print(f'The JSON data has been saved to {SWAGGER_JSON_PATH}')
 
