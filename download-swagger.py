@@ -19,6 +19,9 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
     req = urllib.request.Request(url, headers=headers)
 
     try:
+        if os.path.exists(SWAGGER_JSON_PATH):
+          os.remove(SWAGGER_JSON_PATH)
+          print(f"DELETED swagger json path ({SWAGGER_JSON_PATH})")
         # ファイルが存在するか確認してから削除
         if os.path.exists(EXAMPLE_JSON_PATH):
           os.remove(EXAMPLE_JSON_PATH)
