@@ -13,7 +13,7 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
     EXAMPLE_JSON_EXIST = True
     # Set headers with Authorization token
     headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + api_key, 'azureml-model-deployment': deployment}
-    # /score の部分を正規表現を使用してすべて削除
+    # replace "/score" part with "/swagger.json" by regex expression.
     url = re.sub(r'/score', '/swagger.json', rest_endpoint)
     # Create a request object
     req = urllib.request.Request(url, headers=headers)
@@ -22,7 +22,6 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
         if os.path.exists(SWAGGER_JSON_PATH):
           os.remove(SWAGGER_JSON_PATH)
           print(f"DELETED swagger json path ({SWAGGER_JSON_PATH})")
-        # ファイルが存在するか確認してから削除
         if os.path.exists(EXAMPLE_JSON_PATH):
           os.remove(EXAMPLE_JSON_PATH)
           print(f"DELETED example json path ({EXAMPLE_JSON_PATH})")
@@ -43,7 +42,7 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
                 first_key = list(example.keys())[0]
                 # NOTE: if example json exists..
                 if data:=example[first_key]:
-                    # 各キーおよび値が空であるかどうかを確認
+                    # whether each key/value is empty.
                     for key, value in data.items():
                         if not value:
                             # if value is empty, break out block.
@@ -59,7 +58,6 @@ def download_swagger_json(rest_endpoint, deployment, api_key):
 
     except urllib.error.HTTPError as error:
         print("The request failed with status code: " + str(error.code))
-        # Print the headers - they include the request ID and the timestamp, which are useful for debugging the failure
         print(error.info())
         print(error.read().decode("utf8", 'ignore'))
 
@@ -69,6 +67,4 @@ if __name__ == "__main__":
     parser.add_argument('--deployment', required=True, help='Deployment Name')
     parser.add_argument('--api_key', required=True, help='API key for authorization')
     args = parser.parse_args()
-
-    # 使用例
     download_swagger_json(args.rest_endpoint, args.deployment, args.api_key)
