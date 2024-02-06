@@ -125,28 +125,28 @@
       "example": {
         "input_data": {
           "columns": [
-            "Category",
-            "Product",
-            "Company",
-            "Date",
-            "Goal",
             "test_feat1",
             "test_feat2",
-            "test_feat3"
+            "test_feat3",
+            "test_feat4",
+            "test_feat5",
+            "test_feat6",
+            "test_feat7",
+            "test_feat8"
           ],
           "index": [
             0
           ],
           "data": [
             [
-              "CO2 Airway",
-              "R801",
-              "A003",
-              "2022-02-01 00:00:00",
-              69000,
-              71287,
-              69916,
-              73446
+              "d1",
+              "d2",
+              "d3",
+              "d4",
+              d5,
+              d6,
+              d7,
+              d8
             ]
           ]
         }
