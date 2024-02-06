@@ -31,7 +31,7 @@ if (-not (Test-Path $example_path)) {
 }
 # startup docker
 docker ps -q | ForEach-Object { docker stop $_ >$null }
-docker run -d -p 8080:8080 -v ${pwd}/swagger/:/usr/share/nginx/html/api -e API_URL=api/swagger_spec.json swaggerapi/swagger-ui
+docker run -d -p 5050:5050 -v ${pwd}/swagger/:/usr/share/nginx/html/api -e API_URL=api/swagger_spec.json swaggerapi/swagger-ui
 
 # wait until docker container start complete.
 $containerRunning = $false
